@@ -1,24 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View  } from 'react-native';
 import { useState } from 'react';
 //hooks do react
 
-
 export default function App() {
-  const [contador, setContador] = useState(0)
+  const [lembrete, setLembrete] = useState('')
 
-  const incrementar = () => {
-    setContador(contador + 1) 
+  const capturarTexto = (lembreteDigitado) => {
+    setLembrete(lembreteDigitado)
+  }
+
+  const adicionarLembrete = () => {
+    console.log('Adicionando.. ' + lembrete)
   }
 
   return (
-    <View style={styles.container}>
-      <Text>{contador}</Text>
-      <Button
-        title='incrementar'
-        onPress={incrementar}
-      />
-      <StatusBar style="auto" />
+    <View>
+      <View style={{padding: 40}}>
+        <TextInput 
+          style={{borderBottomColor: '#888', borderBottomWidth: 1, padding: 12, marginBottom: 4}}
+          placeholder="Lembrar..."
+          onChangeText={capturarTexto}
+          value={lembrete}
+        />
+        <Button 
+          title="OK"
+          onPress={adicionarLembrete}
+        />
+      </View>
+      <View>
+        <Text>{lembrete}</Text>
+      </View>
     </View>
   );
 }
