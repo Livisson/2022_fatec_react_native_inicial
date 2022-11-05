@@ -5,13 +5,14 @@ import { useState } from 'react';
 
 export default function App() {
   const [lembrete, setLembrete] = useState('')
+  const [lembretes, setLembretes] = useState([])
 
   const capturarTexto = (lembreteDigitado) => {
     setLembrete(lembreteDigitado)
   }
 
   const adicionarLembrete = () => {
-    console.log('Adicionando.. ' + lembrete)
+    setLembretes([lembrete, ...lembretes])
   }
 
   return (
@@ -29,7 +30,7 @@ export default function App() {
         />
       </View>
       <View>
-        <Text>{lembrete}</Text>
+        <Text>{lembretes}</Text>
       </View>
     </View>
   );
